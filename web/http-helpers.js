@@ -14,10 +14,27 @@ exports.serveAssets = function(res, asset, callback) {
   // Write some code here that helps serve up your static files!
   // (Static files are things like html (yours or archived from others...),
   // css, or anything that doesn't change often.)
+  fs.readFile('/Users/student/Codes/2015-08-web-historian/web/public/' + asset, function(err, data){
+    if (err) {
+      exports.serveArchivedSites(res,asset,callback);
+    } else{
+      res.writeHead(200, headers);
+      res.write(data, callback);
+    }
+  });
 };
 
+exports.serveArchivedSites = function(res, asset, callback) {
   // Write some code here that helps serve up your static files!
   // (Static files are things like html (yours or archived from others...),
   // css, or anything that doesn't change often.)
-
-// As you progress, keep thinking about what helper functions you can put here!
+  fs.readFile('/Users/student/Codes/2015-08-web-historian/archives/sites/' + asset, function(err, data){
+    if (err) {
+      res.writeHead(404, headers);
+      callback();
+    } else{
+      res.writeHead(200, headers);
+      res.write(data, callback);
+    }
+  });
+};
