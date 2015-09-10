@@ -16,5 +16,17 @@
   "scripts": {
     "test": "mocha test",
     "start": "node ./web/basic-server.js"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kylecho/2015-08-web-historian.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/kylecho/2015-08-web-historian/issues"
+  },
+  "homepage": "https://github.com/kylecho/2015-08-web-historian"
 }
