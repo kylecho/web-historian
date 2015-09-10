@@ -9,6 +9,7 @@ exports.handleRequest = function (req, res) {
     // locathost:8080/www.google.com
     asset = (req.url === '/') ? 'index.html' : req.url.substring(1);
     httpHelpers.serveAssets(res, asset, function(){
+    res.writeHead(200, headers);
     res.end();
     });
   } else if ( req.method === 'POST' ) {
@@ -25,10 +26,12 @@ exports.handleRequest = function (req, res) {
         if(isArchived){
           //Serve the archived page
           httpHelpers.serveArchivedSites(res, url, function(){
+          res.writeHead(302, headers);
           res.end();})
         }
         //Not archived yet 
         else {
+          console.log(url);
           //Add url to list
           archive.addUrlToList(url, function(){
             //serve the loading page

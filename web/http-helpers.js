@@ -24,16 +24,16 @@ exports.serveAssets = function(res, asset, callback) {
   });
 };
 
-exports.serveArchivedSites = function(res, asset, callback) {
+exports.serveArchivedSites = function(res, asset, callback, req) {
   // Write some code here that helps serve up your static files!
   // (Static files are things like html (yours or archived from others...),
   // css, or anything that doesn't change often.)
+  console.log(asset);
   fs.readFile(archive.paths.archivedSites + "/" + asset, function(err, data){
     if (err) {
       res.writeHead(404, headers);
       callback();
     } else{
-      res.writeHead(200, headers);
       res.write(data, callback);
     }
   });
